@@ -1,0 +1,19 @@
+.demo-stage {
+  min-height: 56px;
+  border-radius: 8px;
+  padding: 8px;
+  background: var(--elevated);
+}
+
+.demo-chip {
+  width: 34px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: linear-gradient(160deg, #ff7a45, #ff8d61);
+  color: #0d0e09;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 12px;
+}

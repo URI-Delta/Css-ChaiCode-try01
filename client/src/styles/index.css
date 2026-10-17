@@ -1,0 +1,283 @@
+@import 'tailwindcss';
+
+/* ── Design tokens (source of truth: original CSS Visual identity) ── */
+:root {
+  --bg: #0d0e09;
+  --surface: #151610;
+  --card: #1b1a15;
+  --elevated: #21201a;
+  --text: #eee8d8;
+  --muted: #9b9687;
+  --brand: #ff7a45;
+  --brand-hover: #ff8d61;
+  --border: #302d25;
+  --success: #7fb069;
+  --error: #e5484d;
+  --pro: #c9a24a;
+  --font-ui: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --radius: 12px;
+}
+
+[data-theme='light'] {
+  --bg: #f6f2e9;
+  --surface: #fffdf7;
+  --card: #ffffff;
+  --elevated: #f2eee2;
+  --text: #2a2820;
+  --muted: #6d6a5d;
+  --border: #e0dccd;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-elevated: var(--elevated);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-line: var(--border);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-pro: var(--pro);
+  --font-sans: var(--font-ui);
+  --font-mono: var(--font-mono);
+}
+
+html {
+  color-scheme: dark;
+}
+[data-theme='light'] {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Reduced motion — honored globally for CSS + JS-driven animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+[data-reduced-motion='true'] * {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* ── Piecewise base styles ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.12s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--brand);
+  color: #0d0e09;
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--brand-hover);
+}
+.btn-secondary {
+  background: var(--elevated);
+  color: var(--text);
+  border-color: var(--border);
+}
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+}
+.btn-ghost:hover:not(:disabled) {
+  color: var(--text);
+  background: var(--elevated);
+}
+.btn-pro {
+  background: var(--pro);
+  color: #17130a;
+}
+.btn-pro:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+.btn-sm {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.8rem;
+}
+.btn-danger {
+  background: transparent;
+  border-color: var(--error);
+  color: var(--error);
+}
+.btn-danger:hover:not(:disabled) {
+  background: var(--error);
+  color: #fff;
+}
+
+.card-surface {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.input-base {
+  width: 100%;
+  background: var(--elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 0.6rem 0.75rem;
+  font-size: 0.9rem;
+  transition: border-color 0.15s ease;
+}
+.input-base:hover {
+  border-color: #4a463a;
+}
+.input-base:focus {
+  border-color: var(--brand);
+  outline: none;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--card) 25%, var(--elevated) 50%, var(--card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 8px;
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* markdown lesson body */
+.prose-lesson {
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+.prose-lesson h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 1.4em 0 0.5em;
+  color: var(--brand);
+}
+.prose-lesson h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2em 0 0.4em;
+}
+.prose-lesson p {
+  margin: 0.6em 0;
+}
+.prose-lesson ul,
+.prose-lesson ol {
+  padding-left: 1.4em;
+  margin: 0.6em 0;
+}
+.prose-lesson li {
+  margin: 0.25em 0;
+}
+.prose-lesson code {
+  font-family: var(--font-mono);
+  font-size: 0.83em;
+  background: var(--elevated);
+  border: 1px solid var(--border);
+  padding: 0.1em 0.35em;
+  border-radius: 5px;
+}
+.prose-lesson pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.83rem;
+  line-height: 1.55;
+}
+.prose-lesson pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+.prose-lesson table {
+  border-collapse: collapse;
+  margin: 0.8em 0;
+  width: 100%;
+  font-size: 0.85rem;
+}
+.prose-lesson th,
+.prose-lesson td {
+  border: 1px solid var(--border);
+  padding: 0.45rem 0.7rem;
+  text-align: left;
+}
+.prose-lesson blockquote {
+  border-left: 3px solid var(--brand);
+  padding-left: 0.9rem;
+  color: var(--muted);
+  margin: 0.8em 0;
+}
+
+/* range slider */
+input[type='range'] {
+  accent-color: var(--brand);
+  width: 100%;
+}
+
+/* codemirror sizing */
+.cm-editor {
+  font-family: var(--font-mono) !important;
+  font-size: 12.5px !important;
+}
+.cm-editor.cm-focused {
+  outline: none !important;
+}

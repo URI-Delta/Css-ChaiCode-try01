@@ -1,0 +1,31 @@
+.tutor-msg {
+  max-width: 88%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+.tutor-msg.user {
+  margin-left: auto;
+  background: rgba(255, 122, 69, 0.15);
+  border-bottom-right-radius: 4px;
+}
+.tutor-msg.assistant {
+  background: var(--elevated);
+  color: var(--text);
+  border-bottom-left-radius: 4px;
+}
+.tutor-msg.error {
+  border: 1px solid var(--error);
+  color: var(--error);
+  background: transparent;
+}
+.tutor-msg code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--surface);
+  padding: 1px 4px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}

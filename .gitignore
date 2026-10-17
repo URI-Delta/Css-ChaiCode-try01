@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.*.local
+server/.env
+client/.env.local
+
+# Builds
+client/dist/
+server/dist/
+coverage/
+
+# Logs
+*.log
+logs/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Seeded local admin credentials produced by scripts
+server/scripts/*.json
